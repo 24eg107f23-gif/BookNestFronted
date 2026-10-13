@@ -1,9 +1,12 @@
 import axios from 'axios'
 
 const apiHost = window.location.hostname === '127.0.0.1' ? '127.0.0.1' : 'localhost'
+const defaultApiBaseUrl = import.meta.env.PROD
+  ? 'https://booknestbckend.onrender.com/api'
+  : `http://${apiHost}:8080/api`
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || `http://${apiHost}:8080/api`,
+  baseURL: import.meta.env.VITE_API_URL || defaultApiBaseUrl,
   headers: { 'Content-Type': 'application/json' },
 })
 
